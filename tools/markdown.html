@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown 转纯文本周报｜去掉标记再粘贴 — 周报匣</title>
+  <meta name="description" content="把 Markdown 笔记转成可粘进实习周报、工作周报的纯文本：去标题符、链接和列表标记。本地转换。">
+  <meta name="keywords" content="Markdown转纯文本,周报模板,实习周报">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">周报匣<small>Markdown 转周报正文</small></a>
+      <nav class="nav">
+        <a href="../index.html">周报生成</a>
+        <a href="./timestamp.html">时间戳</a>
+        <a href="./json.html">JSON</a>
+        <a href="./markdown.html" aria-current="page">Markdown</a>
+        <a href="../about.html">怎么写周报</a>
+        <a href="../support.html">请作者喝咖啡</a>
+      </nav>
+      <span id="unlock-chip" class="unlock-chip">免费 · 可自愿支持</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Markdown 转纯文本</h1>
+      <p class="lede">笔记里常用列表和加粗，交周报的系统却只接受纯文本。这里去掉标记，列表改成编号。</p>
+    </section>
+    <section class="grid-2">
+      <div class="card">
+        <label for="md-in">Markdown</label>
+        <textarea id="md-in" class="mono" style="min-height:260px;" placeholder="## 本周完成&#10;- 事项一"></textarea>
+        <div class="btn-row">
+          <button type="button" id="btn-md-convert">转成纯文本</button>
+          <button type="button" class="secondary" id="btn-md-sample">示例</button>
+          <button type="button" class="ghost" id="btn-md-copy">复制</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>纯文本</h2>
+        <div id="md-out" class="preview"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>周报匣</strong>
+        <p>作者署名：颇黎。可与首页生成器一起用：先在笔记里列事项，再转成正文。</p>
+        <p class="legal">自愿支持 · 无支付回调 · 不承诺退款 · 不是商家。</p>
+      </div>
+      <div><a href="../support.html">请作者喝咖啡</a></div>
+      <div>
+        <a href="../support.html">
+          <img class="pay-thumb" src="../assets/wechat-pay.jpg" width="132" height="176" alt="颇黎微信支付个人收款码">
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="../js/mdplain.js"></script>
+</body>
+</html>

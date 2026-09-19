@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON 格式化工具｜美化、压缩、校验 — 周报匣</title>
+  <meta name="description" content="本地 JSON 格式化：美化、压缩、语法校验。不上传，适合粘贴接口返回。">
+  <meta name="keywords" content="JSON格式化,JSON压缩,JSON校验">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">周报匣<small>JSON 格式化</small></a>
+      <nav class="nav">
+        <a href="../index.html">周报生成</a>
+        <a href="./timestamp.html">时间戳</a>
+        <a href="./json.html" aria-current="page">JSON</a>
+        <a href="./markdown.html">Markdown</a>
+        <a href="../about.html">怎么写周报</a>
+        <a href="../support.html">请作者喝咖啡</a>
+      </nav>
+      <span id="unlock-chip" class="unlock-chip">免费 · 可自愿支持</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <h1>JSON 格式化</h1>
+      <p class="lede">把接口返回摊开看字段。解析失败会显示浏览器给出的语法错误位置说明。</p>
+    </section>
+    <section class="grid-2">
+      <div class="card">
+        <label for="json-in">输入</label>
+        <textarea id="json-in" class="mono" style="min-height:260px;" placeholder='{"ok":true}'></textarea>
+        <p id="json-err" class="error"></p>
+        <div class="btn-row">
+          <button type="button" id="btn-json-pretty">美化</button>
+          <button type="button" class="secondary" id="btn-json-mini">压缩</button>
+          <button type="button" class="secondary" id="btn-json-check">只校验</button>
+          <button type="button" class="ghost" id="btn-json-sample">示例</button>
+          <button type="button" class="ghost" id="btn-json-copy">复制输出</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>输出</h2>
+        <pre id="json-out" class="output-box"></pre>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>周报匣</strong>
+        <p>作者署名：颇黎。内容不出浏览器。</p>
+        <p class="legal">自愿支持 · 无支付回调 · 不承诺退款 · 不是商家。</p>
+      </div>
+      <div><a href="../support.html">请作者喝咖啡</a></div>
+      <div>
+        <a href="../support.html">
+          <img class="pay-thumb" src="../assets/wechat-pay.jpg" width="132" height="176" alt="颇黎微信支付个人收款码">
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="../js/jsonfmt.js"></script>
+</body>
+</html>

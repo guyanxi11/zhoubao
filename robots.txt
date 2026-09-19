@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 部署到公网后，把下一行改成真实域名
+Sitemap: https://guyanxi11.github.io/zhoubao/sitemap.xml

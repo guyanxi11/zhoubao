@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>实习周报生成器｜工作周报模板在线填写一键复制 — 周报匣</title>
+  <meta name="description" content="实习周报生成器与工作周报模板：按行列出本周事项、问题和下周计划，本地生成可粘贴的通顺周报。纯前端、不上传内容。自愿赞赏可去水印。">
+  <meta name="keywords" content="实习周报生成器,工作周报模板,周报怎么写,实习周报范文,工作周报生成器,周报模板">
+  <meta name="author" content="颇黎">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "周报匣",
+    "alternateName": "实习周报生成器",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "zh-CN",
+    "description": "填写本周事项，本地生成实习周报或工作周报，可一键复制。",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+    "author": { "@type": "Person", "name": "颇黎" }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./index.html">周报匣<small>实习周报 / 工作周报生成器</small></a>
+      <nav class="nav" aria-label="站点导航">
+        <a href="./index.html" aria-current="page">周报生成</a>
+        <a href="./tools/timestamp.html">时间戳</a>
+        <a href="./tools/json.html">JSON</a>
+        <a href="./tools/markdown.html">Markdown</a>
+        <a href="./about.html">怎么写周报</a>
+        <a href="./support.html">请作者喝咖啡</a>
+      </nav>
+      <span id="unlock-chip" class="unlock-chip">免费 · 可自愿支持</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>把本周做过的事列出来，生成一份能交差的周报</h1>
+      <p class="lede">
+        面向实习生和需要每周交报告的人。事项在你浏览器里处理，不会发到服务器。
+        生成结果按「完成 / 进行中 / 问题 / 下周」排好，可一键复制到邮件、飞书或实习系统。
+        工具免费；若帮上忙，可到「请作者喝咖啡」自愿支持。个人收款码没有支付回调，去水印靠本机勾选。
+      </p>
+    </section>
+
+    <section class="grid-2" aria-labelledby="gen-title">
+      <form id="report-form" class="card" onsubmit="return false;">
+        <h2 id="gen-title">填写本周</h2>
+        <div class="row-2">
+          <div>
+            <label for="role">周报类型</label>
+            <select id="role">
+              <option value="intern">实习周报</option>
+              <option value="staff">工作周报</option>
+              <option value="project">项目周报</option>
+            </select>
+          </div>
+          <div>
+            <label for="tone">语气</label>
+            <select id="tone">
+              <option value="plain">简洁（推荐）</option>
+              <option value="formal">稍正式</option>
+              <option value="detailed">带一句说明</option>
+            </select>
+          </div>
+        </div>
+        <div class="row-2">
+          <div>
+            <label for="week-start">开始日期</label>
+            <input id="week-start" type="date">
+          </div>
+          <div>
+            <label for="week-end">结束日期</label>
+            <input id="week-end" type="date">
+          </div>
+        </div>
+        <div class="row-2">
+          <div>
+            <label for="reporter">汇报人 <span class="hint">选填</span></label>
+            <input id="reporter" type="text" placeholder="可不填" autocomplete="off">
+          </div>
+          <div>
+            <label for="post">岗位 / 方向 <span class="hint">选填，勿写学校全名也没关系</span></label>
+            <input id="post" type="text" placeholder="例如：后端实习" autocomplete="off">
+          </div>
+        </div>
+        <label for="done">本周完成 <span class="hint">一行一件事，不要只写「学习了某某」</span></label>
+        <textarea id="done" placeholder="完成登录接口联调&#10;按评审改了筛选逻辑，已提测"></textarea>
+        <label for="doing">进行中 <span class="hint">选填</span></label>
+        <textarea id="doing" placeholder="评价列表分页还在改空状态"></textarea>
+        <label for="issues">问题 / 风险 <span class="hint">没有就留空</span></label>
+        <textarea id="issues" placeholder="测试环境验证码不稳定"></textarea>
+        <label for="next">下周计划 <span class="hint">写成能验收的一句话</span></label>
+        <textarea id="next" placeholder="做完评价列表分页并补异常提示"></textarea>
+        <label for="extra">补充 <span class="hint">选填</span></label>
+        <textarea id="extra" placeholder="需要同步给别人的一句即可"></textarea>
+        <div class="btn-row">
+          <button type="button" id="btn-generate">生成周报</button>
+          <button type="button" id="btn-copy">一键复制</button>
+          <button type="button" class="secondary" id="btn-sample">填入示例</button>
+          <button type="button" class="ghost" id="btn-clear">清空</button>
+        </div>
+      </form>
+
+      <div class="card">
+        <h2>预览</h2>
+        <p id="preview-meta" class="meta-bar">生成后显示字数与复制额度。</p>
+        <div id="preview" class="preview" role="region" aria-label="周报预览">在左侧填写事项后点「生成周报」。</div>
+        <p class="legal">
+          免费版复制可能带一行「支持作者」角标；本周前几次干净复制不带角标。
+          赞赏后到「请作者喝咖啡」勾选「我已支持」，仅对本浏览器生效。不是支付成功通知。
+        </p>
+      </div>
+    </section>
+
+    <section class="tools-list" aria-label="其他本地工具">
+      <a class="tool-card" href="./tools/timestamp.html">
+        <strong>时间戳互转</strong>
+        <p>秒 / 毫秒 / 北京时间，写日志和查过期 token 时常用。</p>
+      </a>
+      <a class="tool-card" href="./tools/json.html">
+        <strong>JSON 格式化</strong>
+        <p>粘贴、美化、压缩、校验。内容留在本机。</p>
+      </a>
+      <a class="tool-card" href="./tools/markdown.html">
+        <strong>Markdown 转周报正文</strong>
+        <p>把笔记里的列表变成能直接贴进周报的纯文本。</p>
+      </a>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">实习周报怎么写，才不像在凑字数</h2>
+      <details open>
+        <summary>只写「本周学习了 Spring Boot」为什么不够？</summary>
+        <p>上级要的是可核对的产出：改了哪个接口、提测了哪一页、卡在哪。学习可以当背景，但至少跟一件具体事项绑在一起。</p>
+      </details>
+      <details>
+        <summary>没完成功能的一周怎么写？</summary>
+        <p>写清楚推进到哪一步、卡点是谁、下周准备怎么验证。空着「完成」硬编进度，比老实写进行中更糟。</p>
+      </details>
+      <details>
+        <summary>这个生成器会不会乱改我的原话？</summary>
+        <p>不会编造业绩。它主要加标题和编号，并给没写句号的条目补句号。事实以你填的为准。</p>
+      </details>
+      <details>
+        <summary>为什么要赞赏？不赞赏能用吗？</summary>
+        <p>能用。赞赏是自愿的，建议档位 6.6 元或 15.9 元，任意金额也可以。这不是网店下单，没有发票，也不承诺退款。</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>周报匣</strong>
+        <p>本地工具，作者署名：颇黎。不做商家收银台，收款码仅用于自愿支持。</p>
+        <p class="legal">自愿支持 · 不定时按本机勾选解锁 · 无支付回调 · 不承诺退款 · 不是商家。</p>
+      </div>
+      <div>
+        <a href="./support.html">打开赞赏页（大图收款码）</a><br>
+        <a href="./about.html">周报写法说明</a><br>
+        <a href="./sitemap.xml">sitemap</a>
+      </div>
+      <div>
+        <p>微信支付（个人）颇黎(**明)</p>
+        <a href="./support.html" title="到赞赏页查看大图">
+          <img class="pay-thumb" src="./assets/wechat-pay.jpg" width="132" height="176" alt="颇黎微信支付个人收款码">
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script src="./js/site.js"></script>
+  <script src="./js/weekreport.js"></script>
+</body>
+</html>

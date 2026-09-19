@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>请作者喝咖啡｜自愿赞赏说明 — 周报匣</title>
+  <meta name="description" content="周报匣自愿赞赏页：微信支付个人收款码（颇黎）。不是商家、无支付回调、不承诺退款。支持后可在本机勾选去水印。">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./index.html">周报匣<small>自愿支持，不是下单</small></a>
+      <nav class="nav" aria-label="站点导航">
+        <a href="./index.html">周报生成</a>
+        <a href="./tools/timestamp.html">时间戳</a>
+        <a href="./tools/json.html">JSON</a>
+        <a href="./tools/markdown.html">Markdown</a>
+        <a href="./about.html">怎么写周报</a>
+        <a href="./support.html" aria-current="page">请作者喝咖啡</a>
+      </nav>
+      <span id="unlock-chip" class="unlock-chip">免费 · 可自愿支持</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>自愿支持作者</h1>
+      <p class="lede">
+        周报匣可以一直免费用。若它替你省掉周五晚上对着空白文档发呆的时间，可以用微信扫下面的个人收款码请作者喝咖啡。
+        这不是商品订单，扫完微信不会通知这个网页；要去水印，请扫完后点「我已支持」。
+      </p>
+    </section>
+
+    <section class="support-layout">
+      <div class="qr-box">
+        <img src="./assets/wechat-pay.jpg" width="360" height="480" alt="微信支付个人收款码，收款展示名颇黎（星明）">
+        <p>微信支付 · 个人码<br>收款展示名：颇黎(**明)</p>
+      </div>
+      <div>
+        <div class="note">
+          建议档位仅作参考，任意金额或完全不支持都可以。个人收款码没有商品详情、没有自动到账通知给网站、也开不了发票。
+        </div>
+        <div class="tiers">
+          <div class="tier"><strong>¥6.6</strong><br>一瓶汽水的份</div>
+          <div class="tier"><strong>¥15.9</strong><br>一杯咖啡的份</div>
+        </div>
+        <h2>君子协议</h2>
+        <p>
+          个人码做不成可靠的「支付成功 → 自动解锁」。所以解锁写在你这台设备的浏览器里。
+          点下面按钮即表示：你已自愿支持，或你接受带角标的免费版也完全没问题——请诚实点，别把这里当成破解开关。
+        </p>
+        <div class="btn-row">
+          <button type="button" id="btn-unlock">我已支持，本机去水印</button>
+          <button type="button" class="secondary" id="btn-relock">取消本机标记</button>
+        </div>
+        <p id="unlock-state" class="meta-bar"></p>
+        <h3>请先读完</h3>
+        <ul>
+          <li>自愿支持，可随时不给钱继续使用带角标的免费版。</li>
+          <li>不定时解锁：以你是否在本机勾选为准，网站收不到微信支付成功事件。</li>
+          <li>不承诺退款。个人之间的赞赏，不是《消费者权益保护法》意义上的网络商品交易。</li>
+          <li>作者不是商家，不提供售后工单、不保证功能永久在线（你也可以下载后离线打开）。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>周报匣</strong>
+        <p>本地工具，作者署名：颇黎。收款码仅用于自愿支持。</p>
+        <p class="legal">自愿支持 · 无支付回调 · 不承诺退款 · 不是商家。</p>
+      </div>
+      <div>
+        <a href="./index.html">返回生成器</a>
+      </div>
+      <div>
+        <img class="pay-thumb" src="./assets/wechat-pay.jpg" width="132" height="176" alt="颇黎微信支付个人收款码">
+      </div>
+    </div>
+  </footer>
+  <script src="./js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var state = document.getElementById("unlock-state");
+      function paint() {
+        state.textContent = window.Zhoubao.isUnlocked()
+          ? "当前：本机已标记支持，周报复制不再附加角标。"
+          : "当前：未标记。免费版仍可用，复制可能带角标。";
+        if (window.Zhoubao.renderChip) {}
+        var chip = document.getElementById("unlock-chip");
+        if (chip) chip.textContent = window.Zhoubao.isUnlocked() ? "本机已去水印" : "免费 · 可自愿支持";
+      }
+      document.getElementById("btn-unlock").addEventListener("click", function () {
+        window.Zhoubao.unlock();
+        paint();
+        window.Zhoubao.toast("已在本机解锁");
+      });
+      document.getElementById("btn-relock").addEventListener("click", function () {
+        window.Zhoubao.lock();
+        paint();
+        window.Zhoubao.toast("已取消标记");
+      });
+      paint();
+    });
+  </script>
+</body>
+</html>

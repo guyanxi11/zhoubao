@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unix 时间戳转换｜秒与毫秒、北京时间 — 周报匣</title>
+  <meta name="description" content="在线时间戳互转：10 位秒、13 位毫秒、本地时间与北京时间。纯前端，不上传数据。">
+  <meta name="keywords" content="时间戳转换,unix时间戳,毫秒时间戳,北京时间">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">周报匣<small>时间戳互转</small></a>
+      <nav class="nav">
+        <a href="../index.html">周报生成</a>
+        <a href="./timestamp.html" aria-current="page">时间戳</a>
+        <a href="./json.html">JSON</a>
+        <a href="./markdown.html">Markdown</a>
+        <a href="../about.html">怎么写周报</a>
+        <a href="../support.html">请作者喝咖啡</a>
+      </nav>
+      <span id="unlock-chip" class="unlock-chip">免费 · 可自愿支持</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <h1>时间戳互转</h1>
+      <p class="lede">查日志、对过期时间用。数字小于 1e11 按秒，否则按毫秒。全部在浏览器里算。</p>
+    </section>
+    <section class="grid-2">
+      <div class="card">
+        <label for="ts-input">时间戳或日期字符串</label>
+        <input id="ts-input" type="text" placeholder="1710000000 或 2026-09-19 22:00:00" autocomplete="off">
+        <label for="ts-dt">或用日期时间</label>
+        <input id="ts-dt" type="datetime-local">
+        <div class="btn-row">
+          <button type="button" id="btn-ts-convert">从文本转换</button>
+          <button type="button" class="secondary" id="btn-ts-from-dt">从日期转换</button>
+          <button type="button" class="secondary" id="btn-ts-now">填入现在</button>
+          <button type="button" class="ghost" id="btn-ts-copy">复制结果</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>结果</h2>
+        <pre id="ts-out" class="output-box">点「填入现在」可先看格式。</pre>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>周报匣</strong>
+        <p>作者署名：颇黎。自愿支持，不是商家。</p>
+        <p class="legal">自愿支持 · 无支付回调 · 不承诺退款。</p>
+      </div>
+      <div><a href="../support.html">请作者喝咖啡</a></div>
+      <div>
+        <a href="../support.html">
+          <img class="pay-thumb" src="../assets/wechat-pay.jpg" width="132" height="176" alt="颇黎微信支付个人收款码">
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="../js/timestamp.js"></script>
+</body>
+</html>
