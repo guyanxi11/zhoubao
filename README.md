@@ -32,6 +32,8 @@ gh pages deploy --repo zhoubao --branch main --path .
 
 预期地址类似：`https://<用户名>.github.io/zhoubao/`
 
+当前已发布：https://guyanxi11.github.io/zhoubao/
+
 ## 说明
 
 - 赞赏后去水印：打开 `support.html`，扫码后点「我已支持」。只写本机 localStorage。
