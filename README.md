@@ -7,10 +7,10 @@
 
 ## 本地打开
 
-双击 `index.html`，或在本目录执行：
+双击 `index.html`，或在本目录执行 `preview.cmd`，或：
 
 ```bat
-npx --yes serve .
+npx --yes --package=serve serve .
 ```
 
 浏览器打开终端里给出的地址即可。
